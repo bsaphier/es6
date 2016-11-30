@@ -41,9 +41,6 @@ const red = new Character('red', 9, 10);
 const blue = new Character('blue', 9, 10);
 const green = new Character('green', 9, 10);
 const yellow = new Character('yellow', 9, 10);
-const orange = new Character('orange', 9, 10);
-const purple = new Character('purple', 9, 10);
-
 
 battle(red, blue);
 
