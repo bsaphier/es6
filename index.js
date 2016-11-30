@@ -1,5 +1,8 @@
+let winnerArr = [];
+
 class Character {
-  constructor( attackPower, health ) {
+  constructor( name, attackPower, health ) {
+    this.name = name;
     this.attackPower = attackPower;
     this.health = health;
   }
@@ -9,19 +12,43 @@ class Character {
       opposingPlayer.health -= this.attackPower;
     }
   }
+
+  heal () {
+    this.health = 10;
+  }
 }
 
-const red = new Character(x, y);
-const blue = new Character(a, b);
+const battle = (player1, player2) => {
 
-// function Character (/*integer*/ attackPower, /*integer*/ health) {
-//     this.attackPower = attackPower;
-//     this.health = health;
-// };
-//
-// Character.prototype.attack = function(/*player instance*/ opposingPlayer){
-// //code to attack opposingPlayer if Math.random() is greater than 0.5
-// };
-//
-// var red = new Character(x, y);
-// var blue = new Character(a, b);
+  while (player1.health > 0 && player2.health > 0) {
+    player1.attack(player2);
+    if (player2.health > 0) player2.attack(player1);
+  }
+
+  const winner = (player1.health > 0) ? player1 : player2;
+  winner.heal();
+
+  const winnerObj = {
+    winner
+  };
+
+  winnerArr.push(winnerObj);
+
+  return winnerArr;
+};
+
+const red = new Character('red', 9, 10);
+const blue = new Character('blue', 9, 10);
+const green = new Character('green', 9, 10);
+const yellow = new Character('yellow', 9, 10);
+const orange = new Character('orange', 9, 10);
+const purple = new Character('purple', 9, 10);
+
+
+battle(red, blue);
+
+battle(green, yellow);
+
+battle(winnerArr[0].winner, winnerArr[1].winner);
+
+console.log(winnerArr);
